@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote Lookup
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h2>Stock Results</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Company</th>
+                            <th>Latest Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ stock["symbol"] }}</td>
+                            <td>{{ stock["name"] }}</td>
+                            <td>{{ stock["price"] | usd }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+    </div>
+
+{% endblock %}

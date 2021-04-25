@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio Overview
+{% endblock %}
+
+{% block main %}
+
+    <div>
+        <h2>Account Summary</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cash Balance</th>
+                            <th>Account Total (Cash + Stock Value)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ cash[0]["cash"] | usd }}</td>
+                            <td>{{ balance | usd }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+    </div>
+    <div>
+        <h2>Portfolio</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stock</th>
+                            <th>Shares</th>
+                            <th>Current Price</th>
+                            <th>Total Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stock in stocks %}
+                        <tr>
+                            <td>{{ stock["stock"] }}</td>
+                            <td>{{ stock["shares"] }}</td>
+                            <td>{{ lookup(stock["stock"])["price"] | usd }}</td>
+                            <td>{{ (stock["shares"] * lookup(stock["stock"])["price"]) | usd }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+    </div>
+{% endblock %}
